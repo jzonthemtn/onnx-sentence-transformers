@@ -19,6 +19,8 @@ model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
 # Tokenize sentences
 encoded_input = tokenizer(sentences, padding=False, truncation=False, return_tensors='pt')
 
+print(encoded_input)
+
 # Compute token embeddings
 with torch.no_grad():
     model_output = model(**encoded_input)

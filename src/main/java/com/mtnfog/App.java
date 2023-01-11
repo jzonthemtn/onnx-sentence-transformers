@@ -58,11 +58,11 @@ public class App {
             inputs.put(INPUT_IDS, OnnxTensor.createTensor(env, LongBuffer.wrap(tokens.getIds()),
                 new long[] {1, tokens.getIds().length}));
 
-            inputs.put(TOKEN_TYPE_IDS, OnnxTensor.createTensor(env,
-                LongBuffer.wrap(tokens.getTypes()), new long[] {1, tokens.getTypes().length}));
-
             inputs.put(ATTENTION_MASK, OnnxTensor.createTensor(env,
                 LongBuffer.wrap(tokens.getMask()), new long[] {1, tokens.getMask().length}));
+
+            inputs.put(TOKEN_TYPE_IDS, OnnxTensor.createTensor(env,
+                LongBuffer.wrap(tokens.getTypes()), new long[] {1, tokens.getTypes().length}));
 
             System.out.println("Performing inference");
             final float[][][] v = (float[][][]) session.run(inputs).get(0).getValue();
@@ -125,8 +125,6 @@ public class App {
         // Now we can tokenize the group and continue.
         final String[] tokens = tokenizer.tokenize(text);
 
-        // text.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");//
-
         final int[] ids = new int[tokens.length];
         //final int[] ids = new int[256];
 
@@ -134,6 +132,9 @@ public class App {
 
         for (int x = 0; x < tokens.length; x++) {
             ids[x] = vocab.get(tokens[x]);
+
+            System.out.println(x + " = " + vocab.get(tokens[x]));
+
         //for (int x = 0; x < 256; x++) {
 
           /*  if(x < tokens.length) {
@@ -147,12 +148,18 @@ public class App {
 
         }
 
+        System.out.print("\n");
+
         final long[] lids = Arrays.stream(ids).mapToLong(i -> i).toArray();
+
+        for(int x = 0; x < lids.length; x++) {
+            System.out.print(lids[x] + " ");
+        }
 
         final long[] types = new long[ids.length];
         Arrays.fill(types, 1);
 
-        System.out.println(lids.length);
+        System.out.println("Number of tokens: " + lids.length);
 
         t.add(new Tokens(tokens, lids, mask, types));
 
