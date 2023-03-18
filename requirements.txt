@@ -26,7 +26,7 @@ distro==1.4.0
 distro-info===0.23ubuntu1
 entrypoints==0.3
 et-xmlfile==1.0.1
-future==0.18.2
+future==0.18.3
 google-api-core==2.11.0
 google-auth==2.16.0
 google-cloud-core==2.3.2
