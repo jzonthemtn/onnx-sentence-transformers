@@ -3,6 +3,8 @@ from transformers import AutoTokenizer
 from pathlib import Path
 
 
+# Models: https://www.sbert.net/docs/pretrained_models.html
+
 model_id="sentence-transformers/all-MiniLM-L6-v2"
 onnx_path = Path("onnx")
 
