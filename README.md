@@ -1,6 +1,8 @@
 # Sentence Transformers ONNX
 
-Models from shttps://huggingface.co/optimum/all-MiniLM-L6-v2/tree/main
+This was built for [OPENNLP-1442](https://issues.apache.org/jira/projects/OPENNLP/issues/OPENNLP-1442) and the 2023 Linux Foundation Open Source Summit.
+
+Models from https://huggingface.co/optimum/all-MiniLM-L6-v2/tree/main
 
 ## Input
 
